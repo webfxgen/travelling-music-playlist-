@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  --animate-train-bob: train-bob 3s ease-in-out infinite;
+  --animate-border-glow: border-glow-cycle 3s ease-in-out infinite;
+  
+  @keyframes train-bob {
+    0%, 100% {
+      transform: translateY(0) scale(1.03);
+    }
+    50% {
+      transform: translateY(-6px) scale(1.03);
+    }
+  }
+
+  @keyframes border-glow-cycle {
+    0%, 100% {
+      border-color: rgba(255, 165, 0, 0.4);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 12px rgba(255, 165, 0, 0.2);
+    }
+    25% {
+      border-color: rgba(212, 175, 55, 0.7);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 16px rgba(212, 175, 55, 0.4);
+    }
+    50% {
+      border-color: rgba(52, 211, 153, 0.6);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 16px rgba(52, 211, 153, 0.35);
+    }
+    75% {
+      border-color: rgba(96, 165, 250, 0.6);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 0 16px rgba(96, 165, 250, 0.35);
+    }
+  }
+}
+
+html, body {
+  font-family: var(--font-serif);
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.font-sans-system {
+  font-family: var(--font-sans);
+}
+
+/* Liquid Glass Effect */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0.45) 80%, rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
